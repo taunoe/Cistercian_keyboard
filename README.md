@@ -26,7 +26,7 @@ This keyboard is for me more of an art project. And the opportunity to learn how
 
 ### What are Cistercian numerals
 
-The medieval number system was invented by Cistercian order in Europe in the 13th century. Cistercian are a Catholic religious order of monks and nuns. They used, amongst themselves, a secret number notation. No one really knows about it until about 20 years ago, a Brithis orientalist and historian [David A. King](https://en.wikipedia.org/wiki/David_A._King_(historian)) wrote a book about it. It was used by various different groups for kinds of medieval cyphers and secret number systems. It is a system that can only write every number from 0 to 9999. It can not to any other numbers. It is really easy to use for dates and page numbers of books.
+The medieval number system was invented by the Cistercian order in Europe in the 13th century. Cistercians are a Catholic religious order of monks and nuns. They used, amongst themselves, a secret number notation. No one really knows about it until about 20 years ago, a British orientalist and historian [David A. King](https://en.wikipedia.org/wiki/David_A._King_(historian)) wrote a book about it. It was used by various different groups for kinds of medieval cyphers and secret number systems. It is a system that can only write every number from 0 to 9999. It can not to any other numbers. It is really easy to use for dates and page numbers of books.
 
 ![Cistercian numerals](doc/numbrid.jpg)
 
@@ -41,7 +41,7 @@ The medieval number system was invented by Cistercian order in Europe in the 13t
 
 ### XIAO-RP2040
 
-It uses Raspberry Pi RP2040 chip like Pico.
+It uses a Raspberry Pi RP2040 chip like Pico.
 
 XIAO RP2040 has:
 
@@ -51,7 +51,7 @@ XIAO RP2040 has:
 - Reset button
 - Boot button
 - RGB LED (user-programmable)
-- Power LED (2 colour)
+- Power LED (2 colours)
 - User LED
 - 264KB SRAM and 2MB Flash memory
 - Dual-core ARM Cortex M0+ processor, 133 MHz
@@ -67,7 +67,7 @@ My design contains four columns and five rows of switches.
 Next time, I'd leave more space between the switches. Right now they are quite tight.
 It's the first time when I ordered yellow PCBs. I think it's a good fit with my wooden mechanical keycaps and housing.
 
-PCBs are made by [Seeed Fusion](https://www.seeedstudio.com/fusion.html). I ordered five and two assembled. I think they look nice. Pads are gold plated. Only one PCB has some kind of colour drip. Otherwise they look and feel good.
+PCBs are made by [Seeed Fusion](https://www.seeedstudio.com/fusion.html). I ordered five and two assembled. I think they look nice. Pads are gold plated. Only one PCB has some kind of colour drip. Otherwise, they look and feel good.
 
 ![Schematic](doc/skeem.png)
 
@@ -82,11 +82,12 @@ PCBs are made by [Seeed Fusion](https://www.seeedstudio.com/fusion.html). I orde
 
 ### Anomaly 1 - design fault?
 
-When the board was assembled and I started to program I discovered that there is anomaly: when I pressed the [ 0 ] key the third row will be stopped to work completely. It works physically but no signal will be registered in the MCU. The same thing happened when I pressed the [  ,  ] key and the fourth row goes to silent.
+When the board was assembled and I started to program I discovered that there is an anomaly: when I pressed the [ 0 ] key the third row will be stopped to work completely. It works physically but no signal will be registered in the MCU. The same thing happened when I pressed the [  ,  ] key and the fourth row goes to silent.
 
 This is maybe the most interesting part of this kind of project to me, to discover why things do not work as expected. Is it a software error or hardware fault? Thankfully I had a second similar board to do experiments. The same anomaly was repeated on another board.
 
-First I looked into the software. What really happens when I press the key? To read keys we turn row pin LOW and read column pins one by one. When the column pin is LOW then this key is pressed down. Otherwise, it stays a HIGH. I discovered that after I pressed ttulemus
+First I looked into the software. What really happens when I press the key? To read keys we turn row pin LOW and read column pins one by one. When the column pin is LOW then this key is pressed down. Otherwise, it stays a HIGH. I discovered that after I pressed the bad key some rows stayed LOW all the time.
+
 | x   |Col 1|Col 2|Col 3|Col 4|
 |-----|-----|-----|-----|-----|
 |Row 1|     |     |%|/|
@@ -113,7 +114,6 @@ Keycaps are made the same way as on my previous keyboard. Which can be found [he
 <img src="doc/IMG_9114.jpg" width="300" height="200">
 <img src="doc/IMG_9119.jpg" width="300" height="200">
 
-
 ### Design ideas
 
 The main components are the keycaps. And everything else is as minimum as possible.
@@ -130,7 +130,7 @@ The main components are the keycaps. And everything else is as minimum as possib
 
 First I planned to use PlatformIO with the Arduino framework, but this board (XIAO-RP2040) is not yet supported on PlatformIO. So I used Arduino IDE.
 
-There have a multiple choices to program it:
+There have multiple choices to program it:
 
 - CircuitPython/MicroPython and [Thonny](https://projects.raspberrypi.org/en/projects/getting-started-with-the-pico/2)
 - Arduino IDE (Install XIAO RP2040 Board)
@@ -140,7 +140,7 @@ There have a multiple choices to program it:
 
 ### Anomaly 2
 
-There is also a second anomaly. In keyboard mode, some keys give a different result than they should. When I Serial print them they all look good and hex codes are correct. But in keyboard mode, I see different key presses.
+There is also a second anomaly. In keyboard mode, some keys give a different result than they should. When I Serial print them they all look good and the hex codes are correct. But in keyboard mode, I see different key presses.
 
 |Key|hex |On screen|hex|
 |---|----|---|----|
@@ -160,3 +160,6 @@ There is also a second anomaly. In keyboard mode, some keys give a different res
 - [Seeed XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html)
 - [Seeed XIAO RP2040 wiki](https://wiki.seeedstudio.com/XIAO-RP2040-with-Arduino/)
 - [David A. King](https://en.wikipedia.org/wiki/David_A._King_(historian))
+
+___
+Tauno Erik, 2022, [taunoerik.art/](https://taunoerik.art/) :estonia:, Слава Україні! Героям Слава! :ukraine:
