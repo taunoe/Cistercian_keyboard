@@ -80,14 +80,13 @@ PCBs are made by [Seeed Fusion](https://www.seeedstudio.com/fusion.html). I orde
 <img src="doc/IMG_8995.jpg" width="300" height="200">
 <img src="doc/IMG_9014.jpg" width="300" height="200">
 
-### Anomaly - design fault?
+### Anomaly 1 - design fault?
 
 When the board was assembled and I started to program I discovered that there is anomaly: when I pressed the [ 0 ] key the third row will be stopped to work completely. It works physically but no signal will be registered in the MCU. The same thing happened when I pressed the [  ,  ] key and the fourth row goes to silent.
 
 This is maybe the most interesting part of this kind of project to me, to discover why things do not work as expected. Is it a software error or hardware fault? Thankfully I had a second similar board to do experiments. The same anomaly was repeated on another board.
 
-First I looked into the software. What really happens when I press the key? To read keys we turn row pin LOW and read column pins one by one. When the column pin is LOW then this key is pressed down. Otherwise, it stays a HIGH. I discovered that after I pressed these two keys. Rows 3 and 4 will stay all the time LOW. Even when the code sets them back to HIGH.
-
+First I looked into the software. What really happens when I press the key? To read keys we turn row pin LOW and read column pins one by one. When the column pin is LOW then this key is pressed down. Otherwise, it stays a HIGH. I discovered that after I pressed ttulemus
 | x   |Col 1|Col 2|Col 3|Col 4|
 |-----|-----|-----|-----|-----|
 |Row 1|     |     |%|/|
@@ -129,7 +128,7 @@ The main components are the keycaps. And everything else is as minimum as possib
 
 ## Software
 
-First I planned to use PlatformIO with the Arduino framework, but this board (XIAO-RP2040) is not yet supported on PlatformIO.
+First I planned to use PlatformIO with the Arduino framework, but this board (XIAO-RP2040) is not yet supported on PlatformIO. So I used Arduino IDE.
 
 There have a multiple choices to program it:
 
@@ -138,6 +137,18 @@ There have a multiple choices to program it:
 - [Raspberry Pi Pico C/C++ SDK](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
 - PlatformIO with the Arduino framework (Not supported yet!)
 - etc.
+
+### Anomaly 2
+
+There is also a second anomaly. In keyboard mode, some keys give a different result than they should. When I Serial print them they all look good and hex codes are correct. But in keyboard mode, I see different key presses.
+
+|Key|hex |On screen|hex|
+|---|----|---|----|
+|/  |0x2F|-  |0x2D|
+|*  |0x2A|(  |0x28|
+|-  |0x2D|+  |0x2B|
+|+  |0x2B|`  |0x60|
+|=  |0x3D|´  |0xB4|
 
 ## Links
 
@@ -149,4 +160,3 @@ There have a multiple choices to program it:
 - [Seeed XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html)
 - [Seeed XIAO RP2040 wiki](https://wiki.seeedstudio.com/XIAO-RP2040-with-Arduino/)
 - [David A. King](https://en.wikipedia.org/wiki/David_A._King_(historian))
-- 
