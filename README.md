@@ -80,6 +80,26 @@ PCBs are made by [Seeed Fusion](https://www.seeedstudio.com/fusion.html). I orde
 <img src="doc/IMG_8995.jpg" width="300" height="200">
 <img src="doc/IMG_9014.jpg" width="300" height="200">
 
+### Anomaly - design fault?
+
+When the board was assembled and I started to program I discovered that there is anomaly: when I pressed the [ 0 ] key the third row will be stopped to work completely. It works physically but no signal will be registered in the MCU. The same thing happened when I pressed the [  ,  ] key and the fourth row goes to silent.
+
+This is maybe the most interesting part of this kind of project to me, to discover why things do not work as expected. Is it a software error or hardware fault? Thankfully I had a second similar board to do experiments. The same anomaly was repeated on another board.
+
+First I looked into the software. What really happens when I press the key? To read keys we turn row pin LOW and read column pins one by one. When the column pin is LOW then this key is pressed down. Otherwise, it stays a HIGH. I discovered that after I pressed these two keys. Rows 3 and 4 will stay all the time LOW. Even when the code sets them back to HIGH.
+
+| x   |Col 1|Col 2|Col 3|Col 4|
+|-----|-----|-----|-----|-----|
+|Row 1|     |     |%|/|
+|Row 2|7|8|9|*|
+|Row 3|4|5|6|-|
+|Row 4|1|2|3|+|
+|Row 5|0|.| |=|
+
+I was checking all the hardware connections and there were no errors. Maybe this anomaly happens because these pins are also RX and TX pins? Anyway. Since the board had two unused pins I decided to rewire these rows. And it is not an easy task, thanks to these all thin traces on the PCB. This hack fixes the anomaly.
+
+![Fix](doc/fix.jpg)
+
 ### Keycaps
 
 Keycaps are made the same way as on my previous keyboard. Which can be found [here](https://taunoerik.art/portfolio/keyboard/). Only that this time engraving them by hand. Not with a laser.
@@ -94,25 +114,30 @@ Keycaps are made the same way as on my previous keyboard. Which can be found [he
 <img src="doc/IMG_9114.jpg" width="300" height="200">
 <img src="doc/IMG_9119.jpg" width="300" height="200">
 
-Viimistlus!!
-
 
 ### Design ideas
 
 The main components are the keycaps. And everything else is as minimum as possible.
 
-images!!!!
+<img src="doc/IMG_9182.jpg" width="300" height="200">
+<img src="doc/IMG_9184.jpg" width="300" height="200">
+<img src="doc/IMG_9186.jpg" width="300" height="200">
+<img src="doc/IMG_9187.jpg" width="300" height="200">
+<img src="doc/IMG_9188.jpg" width="300" height="200">
+<img src="doc/IMG_9189.jpg" width="300" height="200">
+<img src="doc/IMG_9190.jpg" width="300" height="200">
 
 ## Software
 
-First I planned to use PlatformIO with the Arduino framework, but this board (XIAO-RP2040) is not yet supported.
+First I planned to use PlatformIO with the Arduino framework, but this board (XIAO-RP2040) is not yet supported on PlatformIO.
 
 There have a multiple choices to program it:
 
 - CircuitPython/MicroPython and [Thonny](https://projects.raspberrypi.org/en/projects/getting-started-with-the-pico/2)
-- Arduino IDE
+- Arduino IDE (Install XIAO RP2040 Board)
 - [Raspberry Pi Pico C/C++ SDK](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
-- PlatformIO with the Arduino framework
+- PlatformIO with the Arduino framework (Not supported yet!)
+- etc.
 
 ## Links
 

@@ -3,8 +3,6 @@
  * Last edited: 01.05.2022
  * Copyright 2022 Tauno Erik
  ************************************************/
-
-#include <Arduino.h>
 #include <Keyboard.h>
 
 // 1 = Serial.Print
